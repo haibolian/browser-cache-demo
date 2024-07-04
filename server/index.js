@@ -4,11 +4,20 @@ var Router = require('koa-router');
 const fs = require('fs')
 const router = new Router;
 
-router.get("/", async (ctx) => {
+router.get('/', ctx => {
+  ctx.body = 'Hello World'
+})
+
+router.get("/cache/expires", async (ctx) => {
+  console.log('getting');
+  const date = new Date('2024-7-10');
+  ctx.set('expires', date.toUTCString());
+  ctx.body = 'ok';
+})
+
+router.get("/cache/strong", async (ctx) => {
   console.log('getting');
   ctx.set('Cache-Control', 'max-age=10');
-  // 设置强缓存 10秒
-  ctx.set('Cache-Contrwol', 'max-age=10')
   ctx.body = 'ok';
 })
 
@@ -17,7 +26,7 @@ setInterval(() => {
   count++
 }, 10000);
 
-router.get("/about", async (ctx) => {
+router.get("/cache/etag", async (ctx) => {
   let etag = 'about' + count
   if (ctx.header['if-none-match'] === etag) {
     ctx.status = 304;
@@ -27,7 +36,7 @@ router.get("/about", async (ctx) => {
   }
 })
 
-router.get('/category', (ctx) => {
+router.get('/cache/since', (ctx) => {
   const since = ctx.get('if-modified-since')
   const sinceTime = new Date(since)
   const now = new Date();

@@ -8,7 +8,7 @@ function Navbar() {
           <Link to={"/"}>home</Link>
         </li>
         <li>
-          <Link to={"/about"}>about</Link>
+          <Link to={"/cache"}>浏览器缓存</Link>
         </li>
         <li>
           <Link to={"/category"}>category</Link>
