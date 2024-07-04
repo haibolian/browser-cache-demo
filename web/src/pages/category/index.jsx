@@ -1,16 +1,16 @@
 import { useEffect } from "react";
 import Axios from 'axios'
-function About () {
+function Category () {
   useEffect(() => {
-    Axios.get('/api/about')
+    Axios.get('/api/category')
   }, [])
   return (
     <div>
-      About
+      Category
     </div>
   )
 }
 
-export default About;
+export default Category;
 
 

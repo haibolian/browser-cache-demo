@@ -10,6 +10,9 @@ function Navbar() {
         <li>
           <Link to={"/about"}>about</Link>
         </li>
+        <li>
+          <Link to={"/category"}>category</Link>
+        </li>
       </ul>
     </div>
   );
