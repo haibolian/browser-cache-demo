@@ -15,7 +15,7 @@ router.get("/", async (ctx) => {
 let count = 0;
 setInterval(() => {
   count++
-}, 5000);
+}, 10000);
 
 router.get("/about", async (ctx) => {
   let etag = 'about' + count
@@ -23,7 +23,6 @@ router.get("/about", async (ctx) => {
     ctx.status = 304;
   } else {
     ctx.set('ETag', etag)
-    ctx.set('cache-control', 'public, max-age=20')
     ctx.body = 'about';
   }
 })
